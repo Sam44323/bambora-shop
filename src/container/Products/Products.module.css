@@ -1,0 +1,4 @@
+.productsSection {
+  display: flex;
+  flex-wrap: wrap;
+}
