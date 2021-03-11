@@ -1,0 +1,29 @@
+.prodDetailSection {
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+  background-color: orange;
+  color: white;
+  border-radius: 10px;
+  max-width: 500px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.prodDetailContent {
+  background-color: black;
+  padding-bottom: 4px;
+}
+
+.prodName {
+  border-bottom: 1px solid white;
+  background-color: lightblue;
+  color: black;
+}
+
+.prodName,
+.prodAmount {
+  font-weight: 100;
+  margin: 0px;
+  margin-top: 10px;
+}
