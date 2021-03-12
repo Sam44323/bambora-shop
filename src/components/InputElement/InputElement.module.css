@@ -1,0 +1,41 @@
+.inputSection {
+  margin-top: 10px;
+}
+
+.inputLabel {
+  font-size: 1.15rem;
+  text-transform: capitalize;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 4px;
+  font-weight: bolder;
+  display: inline-block;
+}
+
+.inputField {
+  background-color: transparent;
+  border: 0px;
+  outline: 0px;
+  text-align: center;
+  border-bottom: 3px solid black;
+  width: 80%;
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+}
+
+.inputField:focus {
+  border-bottom: 3px solid white;
+}
+
+/*FOR HIDING THE ARROWS FROM THE NUMBER TYPE INPUTS*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

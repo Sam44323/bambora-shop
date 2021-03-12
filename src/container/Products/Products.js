@@ -37,6 +37,7 @@ class Products extends PureComponent {
         name={item.name}
         image={item.image}
         amount={item.amount}
+        buttonAction={() => this.props.history.push(`/prod-details/${item.id}`)}
       />
     ));
     return <div className={styles.productsSection}>{products}</div>;

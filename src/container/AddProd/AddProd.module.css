@@ -1,0 +1,22 @@
+.addProductSection {
+  text-align: center;
+  background-color: #e48257;
+  padding: 10px 0px;
+  border-radius: 10px;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  width: 95%;
+  margin: auto;
+  margin-top: 30px;
+  max-width: 600px;
+}
+
+.addProductTitle {
+  margin: 0px;
+  color: #4a3933;
+  font-weight: 400;
+  padding-bottom: 10px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  border-bottom: 3px solid white;
+}
