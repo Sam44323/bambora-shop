@@ -4,7 +4,15 @@ import btnStyles from '../Button/Button.module.css';
 
 import Button from '../../components/Button/Button';
 
-const product = ({ name, image, amount, id, creator, buttonAction }) => (
+const product = ({
+  name,
+  image,
+  amount,
+  id,
+  creator,
+  buttonAction,
+  deleteProdAction,
+}) => (
   <div className={styles.productItemSection}>
     <img src={image} alt={name} className={sharedStyles.imageContent} />
     <div className={styles.productDetails}>
@@ -13,6 +21,7 @@ const product = ({ name, image, amount, id, creator, buttonAction }) => (
       <Button class={`${btnStyles.SuccessBtn}`} clickAction={buttonAction}>
         More
       </Button>
+      <br />
     </div>
   </div>
 );

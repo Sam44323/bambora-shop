@@ -4,6 +4,7 @@ import styles from './AddProd.module.css';
 import Input from '../../components/InputElement/InputElement';
 import btnStyles from '../../components/Button/Button.module.css';
 import Button from '../../components/Button/Button';
+import axios from 'axios';
 
 class AddProd extends PureComponent {
   state = {
@@ -44,7 +45,7 @@ class AddProd extends PureComponent {
     this.setState({ [name]: eleValue });
   };
 
-  submitForm = () => {
+  resetForm = () => {
     const updatedValue = { ...this.state };
     for (let item in updatedValue) {
       updatedValue[item].value = '';
@@ -57,6 +58,21 @@ class AddProd extends PureComponent {
       desc: { ...updatedValue.desc },
       amount: { ...updatedValue.amount },
     });
+  };
+
+  submitForm = () => {
+    const data = {};
+    for (let item in this.state) {
+      data[item] = this.state[item].value;
+    }
+    axios
+      .post('http://localhost:5000/bambora-shop/products/add-prod', data)
+      .then(() => {
+        this.props.history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {

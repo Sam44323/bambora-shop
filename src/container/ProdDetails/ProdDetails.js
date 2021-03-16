@@ -1,18 +1,28 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ProdDetails from '../../components/ProductDetails/ProductDetails';
+import axios from 'axios';
 
-class ProductDetails extends PureComponent {
-  render() {
-    return (
-      <ProdDetails
-        name='Prod 1'
-        amount={9.99}
-        image='https://media.gettyimages.com/photos/stack-of-books-picture-id157482029?s=612x612'
-        desc='This is one of the best product in the industry'
-      />
-    );
-  }
-}
+const ProductDetails = (props) => {
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/bambora-shop/products/get-prod/${props.match.params.id}`
+      )
+      .then((response) => {
+        setProduct(response.data.product);
+      })
+      .catch((err) => console.log(err));
+  }, [props]);
+  return (
+    <ProdDetails
+      name={product.name}
+      amount={product.amount}
+      image={product.image}
+      desc={product.description}
+    />
+  );
+};
 
 export default ProductDetails;

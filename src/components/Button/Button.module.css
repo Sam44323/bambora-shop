@@ -22,6 +22,7 @@
 .DangerBtn {
   background-color: black;
   margin-right: 0px;
+  color: wheat;
 }
 
 .SuccessBtn:hover {

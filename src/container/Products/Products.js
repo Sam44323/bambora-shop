@@ -2,45 +2,41 @@ import React, { PureComponent } from 'react';
 
 import styles from './Products.module.css';
 import ProductItem from '../../components/ProductItem/ProductItem';
+import axios from 'axios';
 
 class Products extends PureComponent {
   state = {
-    products: [
-      {
-        id: 1,
-        name: 'Prod 1',
-        image:
-          'https://media.gettyimages.com/photos/stack-of-books-picture-id157482029?s=612x612',
-        amount: 9.99,
-      },
-      {
-        id: 2,
-        name: 'Prod 2',
-        image:
-          'https://media.gettyimages.com/photos/stack-of-books-picture-id157482029?s=612x612',
-        amount: 16.99,
-      },
-      {
-        id: 3,
-        name: 'Prod 3',
-        image:
-          'https://media.gettyimages.com/photos/stack-of-books-picture-id157482029?s=612x612',
-        amount: 3.99,
-      },
-    ],
+    products: [],
   };
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/bambora-shop/products/get-prods')
+      .then((prods) => {
+        this.setState({ products: [...prods.data.products] });
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     const products = this.state.products.map((item) => (
       <ProductItem
-        key={item.id}
-        id={item.id}
+        key={item._id}
+        id={item._id}
         name={item.name}
         image={item.image}
         amount={item.amount}
-        buttonAction={() => this.props.history.push(`/prod-details/${item.id}`)}
+        buttonAction={() =>
+          this.props.history.push(`/prod-details/${item._id}`)
+        }
+        deleteProduct={this.deleteProdAction}
       />
     ));
-    return <div className={styles.productsSection}>{products}</div>;
+    return products.length === 0 ? (
+      <h1 className={styles.noProductsTitle}>No Products to show!</h1>
+    ) : (
+      <div className={styles.productsSection}>{products}</div>
+    );
   }
 }
 
