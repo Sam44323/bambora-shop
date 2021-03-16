@@ -32,7 +32,7 @@ class Products extends PureComponent {
         deleteProduct={this.deleteProdAction}
       />
     ));
-    return products.length === 0 ? (
+    return products.length < 1 ? (
       <h1 className={styles.noProductsTitle}>No Products to show!</h1>
     ) : (
       <div className={styles.productsSection}>{products}</div>
