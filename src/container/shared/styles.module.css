@@ -33,6 +33,7 @@
   margin: auto;
   margin-top: 30px;
   max-width: 600px;
+  font-size: 2.4rem;
 }
 
 /*STYLE FOR THE PRODUCTS TITLE*/
@@ -46,7 +47,16 @@
   border-bottom: 3px solid white;
 }
 
+@media (min-width: 1037px) {
+  .FormTitle {
+    font-size: 2rem;
+  }
+}
+
 @media (min-width: 745px) and (orientation: landscape) {
+  .FormSection {
+    font-size: 1.4rem;
+  }
   .productsSection {
     flex-direction: row;
     flex: content;

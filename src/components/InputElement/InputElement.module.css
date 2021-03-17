@@ -39,3 +39,17 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+@media (max-width: 1036px) and (orientation: portrait) {
+  .inputLabel {
+    font-size: 2.1rem;
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 1037px) {
+  .inputLabel {
+    font-size: 1.1rem;
+    margin-top: 0px;
+  }
+}
