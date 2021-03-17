@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import styles from './Products.module.css';
+import sharedStyles from '../shared/styles.module.css';
 import ProductItem from '../../components/ProductItem/ProductItem';
 import axios from 'axios';
 
@@ -33,9 +33,9 @@ class Products extends PureComponent {
       />
     ));
     return products.length < 1 ? (
-      <h1 className={styles.noProductsTitle}>No Products to show!</h1>
+      <h1 className={sharedStyles.noProductsTitle}>No Products to show!</h1>
     ) : (
-      <div className={styles.productsSection}>{products}</div>
+      <div className={sharedStyles.productsSection}>{products}</div>
     );
   }
 }

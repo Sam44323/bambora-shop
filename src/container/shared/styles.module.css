@@ -3,3 +3,24 @@
   width: 250px;
   border-radius: 10px;
 }
+
+.noProductsTitle {
+  font-family: 'Railway', sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  margin: 0px auto;
+  margin-top: 100px;
+  color: saddlebrown;
+}
+
+.productsSection {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 745px) and (orientation: landscape) {
+  .productsSection {
+    flex-direction: row;
+    flex: content;
+  }
+}

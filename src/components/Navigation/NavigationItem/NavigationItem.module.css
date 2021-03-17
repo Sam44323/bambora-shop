@@ -1,4 +1,4 @@
-.desktop_class{
+.desktop_class {
   margin-right: 10px;
   color: brown;
   text-decoration: none;
@@ -7,8 +7,8 @@
   font-weight: bolder;
 }
 
-.desktop_class:hover{
-  background-color: saddlebrown;
+.desktop_class:hover {
+  background-color: rgb(139, 69, 19, 0.45);
   padding: 10px;
   border-radius: 10px;
   color: black;
