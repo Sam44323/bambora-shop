@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import styles from './AddProd.module.css';
+import sharedStyle from '../shared/styles.module.css';
 import Input from '../../components/InputElement/InputElement';
 import btnStyles from '../../components/Button/Button.module.css';
 import Button from '../../components/Button/Button';
@@ -83,17 +83,18 @@ class AddProd extends PureComponent {
           key={item}
           name={item}
           value={this.state[item].value}
-          valid={!this.state[item].valid && this.state[item].touched}
-          invalidMessage={item.message}
+          isValid={this.state[item].isValid}
+          touched={this.state[item].touched}
+          invalidMessage={this.state[item].message}
           type={this.state[item].type ? this.state[item].type : 'text'}
           changeAction={this.changeValue}
         />
       );
     }
     return (
-      <div className={styles.addProductSection}>
-        <h1 className={styles.addProductTitle}>Add a product!</h1>
-        <div className={styles.addProdInputSection}>{inputValue}</div>
+      <div className={sharedStyle.FormSection}>
+        <h1 className={sharedStyle.FormTitle}>Add a product!</h1>
+        <div>{inputValue}</div>
         <br />
         <Button class={btnStyles.SuccessBtn} clickAction={this.submitForm}>
           Add

@@ -20,7 +20,7 @@ const Orders = React.lazy(() => import('./container/Orders/Orders.js'));
 //lazy loading for authentication components
 const Logout = React.lazy(() => import('./container/auth/Logout/Logout.js'));
 const Login = React.lazy(() => import('./container/auth/Login/Login.js'));
-const Signup = React.lazy(() => import('./container/auth/Signup/Singup.js'));
+const Signup = React.lazy(() => import('./container/auth/Signup/Signup.js'));
 
 //NOT FOUND PAGE
 const NotFound = React.lazy(() => import('./container/NotFound/Page404.js'));

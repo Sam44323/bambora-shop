@@ -14,7 +14,7 @@ const inputElement = (props) => (
       }
       className={styles.inputField}
     />
-    {props.isValid && <div>{props.invalidMessage}</div>}
+    {!props.isValid && props.touched && <div>{props.invalidMessage}</div>}
   </div>
 );
 
