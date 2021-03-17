@@ -42,7 +42,6 @@ const Login = (props) => {
     }
     return valid;
   }, []);
-
   const changeValue = useCallback(
     (name, value, type) => {
       const itemIndex = formState.findIndex((item) => item.name === name);
