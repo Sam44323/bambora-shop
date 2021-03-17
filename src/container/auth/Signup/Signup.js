@@ -6,6 +6,9 @@ import InputElement from '../../../components/InputElement/InputElement';
 import Button from '../../../components/Button/Button';
 import axios from 'axios';
 
+//util functions
+import { checkValidity } from '../../../components/utils/checkValidity';
+
 //add the button disabled logic later to the form!
 
 const Signup = (props) => {
@@ -36,27 +39,6 @@ const Signup = (props) => {
     },
   ]);
 
-  const checkValidity = useCallback((type, value) => {
-    let valid;
-    switch (type) {
-      case 'text':
-        valid = value !== '';
-        break;
-
-      case 'email':
-        valid = value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
-        break;
-
-      case 'password':
-        valid = value.length >= 5;
-        break;
-
-      default:
-        return;
-    }
-    return valid;
-  }, []);
-
   const submitForm = useCallback(() => {
     const data = {};
     for (let item of formState) {
@@ -80,7 +62,7 @@ const Signup = (props) => {
       formState[itemIndex] = itemObj;
       setFormState([...formState]);
     },
-    [formState, checkValidity]
+    [formState]
   );
   return (
     <div className={sharedStyles.FormSection}>

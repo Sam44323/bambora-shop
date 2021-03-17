@@ -6,6 +6,9 @@ import InputElement from '../../../components/InputElement/InputElement';
 import Button from '../../../components/Button/Button';
 import axios from 'axios';
 
+//util functions
+import { checkValidity } from '../../../components/utils/checkValidity';
+
 const Login = (props) => {
   const [formState, setFormState] = useState([
     {
@@ -26,22 +29,6 @@ const Login = (props) => {
     },
   ]);
 
-  const checkValidity = useCallback((type, value) => {
-    let valid;
-    switch (type) {
-      case 'email':
-        valid = value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
-        break;
-
-      case 'password':
-        valid = value.length >= 5;
-        break;
-
-      default:
-        return;
-    }
-    return valid;
-  }, []);
   const changeValue = useCallback(
     (name, value, type) => {
       const itemIndex = formState.findIndex((item) => item.name === name);
@@ -52,7 +39,7 @@ const Login = (props) => {
       formState[itemIndex] = itemObj;
       setFormState([...formState]);
     },
-    [formState, checkValidity]
+    [formState]
   );
 
   const submitForm = useCallback(() => {
