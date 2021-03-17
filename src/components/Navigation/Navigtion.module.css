@@ -1,6 +1,6 @@
 /*STYLE FOR DESKTOP SECTION NAVIGATION*/
 
-.desktopSection{
+.desktopSection {
   display: flex;
   justify-content: space-between;
   vertical-align: middle;
@@ -10,41 +10,52 @@
 }
 
 /*STYLE FOR THE TITLE*/
-.navigationTitle{
+.navigationTitle {
   font-family: 'Raleway', sans-serif;
 }
 
 /*STYLE FOR THE NAVIGATION SECTION*/
-.navigationSection{
+.navigationSection {
   margin-top: 10px;
   padding-bottom: 17px;
 }
 
 /*STYLE FOR THE HAMBURGER ICON*/
 
-  .hamburgerIconSection{
-    display: none;
-  }
+.hamburgerIconSection {
+  display: none;
+}
 
 /*SHARED STYLES*/
-.navigationTitle,.navigationSection{
+.navigationTitle,
+.navigationSection {
   display: inline-block;
 }
 
 /*STYLE FOR SMALLER SCREENS*/
 
-@media (max-width: 1025px){
-  .navigationSection{
+@media (max-width: 1025px) {
+  .navigationSection {
     display: none;
   }
 
-  .hamburgerIconSection{
+  .desktopSection {
+    padding: 10px 16px;
+    align-items: center;
+  }
+
+  .navigationTitle {
+    font-size: 3.3rem;
+  }
+
+  .hamburgerIconSection {
     display: inline-block;
     height: 30px;
     width: 70px;
+    vertical-align: middle;
   }
 
-  .hamburgerLine{
+  .hamburgerLine {
     background-color: black;
     height: 3px;
     width: 40px;
