@@ -10,8 +10,8 @@ const ProductDetails = (props) => {
       .get(
         `http://localhost:5000/bambora-shop/products/get-prod/${props.match.params.id}`
       )
-      .then((response) => {
-        setProduct(response.data.product);
+      .then((res) => {
+        setProduct(res.data.product);
       })
       .catch((err) => console.log(err));
   }, [props]);
