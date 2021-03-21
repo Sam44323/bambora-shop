@@ -51,7 +51,7 @@ const AdminProducts = (props) => {
   return <Fragment>
   <Navigation/>
   {loading && <div className={sharedStyles.loadingSection}>
-    <Loader type="Circles" height={80} width={80} color="salmon"/>
+    <Loader type="Circles" height={80} width={80} color="black"/>
   </div>}
     <div className={sharedStyles.productsSection}>
       {prods.length === 0 && !hasProds ? (
