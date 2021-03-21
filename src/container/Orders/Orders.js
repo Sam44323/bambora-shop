@@ -1,6 +1,6 @@
 import {useState, useEffect, Fragment} from 'react';
 
-import styles from './Orders.module.css';
+import sharedStyles from '../shared/styles.module.css';
 import Navigation from '../../components/Navigation/Navigation'
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ const Orders = (props) => {
   }, [props])
   return <Fragment>
   <Navigation/>
-    {orders.length === 0 ? <h1>No Orders Yet!</h1> : orders.map(item => item)}
+    {orders.length === 0 ? <h1 className={sharedStyles.emptyValueTitleStyle}>No Orders Yet!</h1> : orders.map(item => item)}
   </Fragment>;
 };
 

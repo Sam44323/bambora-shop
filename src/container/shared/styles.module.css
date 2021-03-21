@@ -7,12 +7,26 @@
 
 /*STYLE FOR NO PRODUCTS TITLE*/
 .noProductsTitle {
-  font-family: 'Railway', sans-serif;
+  font-family: "Railway", sans-serif;
   font-weight: lighter;
   text-align: center;
   margin: 0px auto;
   margin-top: 100px;
   color: saddlebrown;
+}
+
+/*STYLE FOR THE ERROR, NO CART ITEMS, NO ORDERS TITLE*/
+.emptyValueTitleStyle {
+  width: 80%;
+  padding: 10px 4px;
+  border-radius: 10px;
+  background-color: wheat;
+  text-align: center;
+  margin: 0px auto;
+  margin-top: 30px;
+  font: 1.7rem;
+  color: saddlebrown;
+  font-family: "Raleway", sans-serif;
 }
 
 /*STYLE FOR THE PRODUCTS SECTION*/
@@ -43,13 +57,17 @@
   font-weight: 400;
   padding-bottom: 10px;
   text-align: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   border-bottom: 3px solid white;
 }
 
 @media (min-width: 1037px) {
   .FormTitle {
     font-size: 2rem;
+  }
+
+  .emptyValueTitleStyle {
+    width: 40%;
   }
 }
 

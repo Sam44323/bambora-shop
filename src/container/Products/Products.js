@@ -9,6 +9,7 @@ import axios from 'axios';
 class Products extends PureComponent {
   state = {
     products: [],
+    hasProds: true,
   };
 
   componentDidMount() {
@@ -18,7 +19,7 @@ class Products extends PureComponent {
     axios
       .get('http://localhost:5000/bambora-shop/products/get-prods')
       .then((prods) => {
-        this.setState({ products: [...prods.data.products] });
+        this.setState({ products: [...prods.data.products] , hasProds: prods.data.products.length > 0});
       })
       .catch((err) => console.log(err));
   }
@@ -39,7 +40,7 @@ class Products extends PureComponent {
     ));
     return <React.Fragment>
     <Navigation/>
-    {products.length < 1 ? (
+    {products.length === 0 && !this.state.hasProds ? (
       <h1 className={sharedStyles.noProductsTitle}>No Products to show!</h1>
     ) : (
       <div className={sharedStyles.productsSection}>{products}</div>

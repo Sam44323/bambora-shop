@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const AdminProducts = (props) => {
   const [prods, setProds] = useState([]);
+  const [hasProds, setHasProds] = useState(true);
   useEffect(() => {
     if(!tokenChecker()){
       return props.history.replace('/auth/login')
@@ -18,6 +19,7 @@ const AdminProducts = (props) => {
       )
       .then((prods) => {
         setProds(prods.data.products);
+        setHasProds(prods.data.products.length > 0);
       })
       .catch((err) => console.log(err));
   }, [props]);
@@ -39,7 +41,7 @@ const AdminProducts = (props) => {
   return <Fragment>
   <Navigation/>
     <div className={sharedStyles.productsSection}>
-      {prods.length === 0 ? (
+      {prods.length === 0 && !hasProds ? (
         <h1 className={sharedStyles.noProductsTitle}>You have no products!</h1>
       ) : (
         prods.map((item) => (
