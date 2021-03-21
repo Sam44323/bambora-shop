@@ -1,8 +1,8 @@
-import styles from './ProductsItem.module.css';
-import sharedStyles from '../../container/shared/styles.module.css';
-import btnStyles from '../Button/Button.module.css';
+import styles from "./ProductsItem.module.css";
+import sharedStyles from "../../container/shared/styles.module.css";
+import btnStyles from "../Button/Button.module.css";
 
-import Button from '../../components/Button/Button';
+import Button from "../../components/Button/Button";
 
 const product = (props) => (
   <div className={styles.productItemSection}>
@@ -27,6 +27,14 @@ const product = (props) => (
           clickAction={() => props.deleteAction(props.id)}
         >
           Delete
+        </Button>
+      )}
+      {props.cartAction && (
+        <Button
+          class={`${btnStyles.SuccessBtn}`}
+          clickAction={() => props.cartAction(props.id)}
+        >
+          Add To Cart
         </Button>
       )}
     </div>

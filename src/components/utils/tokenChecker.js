@@ -4,7 +4,6 @@ const checkValidation = () => {
     localStorage.getItem("token") &&
     new Date(localStorage.getItem("expiresIn")) > new Date()
   ) {
-    console.log(new Date(localStorage.getItem("expiresIn")));
     isValid = true;
   }
   return isValid;

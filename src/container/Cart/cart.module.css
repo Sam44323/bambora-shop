@@ -1,0 +1,34 @@
+.cardView {
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 30px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgb(128, 128, 128, 0.6);
+  padding: 30px;
+  font-size: 1.4rem;
+}
+
+.cartItemName {
+  color: saddlebrown;
+  font-weight: bolder;
+  font-family: "Raleway", sans-serif;
+}
+
+.cartItemQty {
+  font-family: "Raleway" sans-serif;
+  font-size: 1.9rem;
+  color: white;
+  background-color: black;
+  display: block;
+  width: 10%;
+  margin: 10px auto;
+}
+
+@media (min-width: 1037px) {
+  .cardView {
+    width: 40%;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
