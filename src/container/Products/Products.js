@@ -20,7 +20,11 @@ class Products extends PureComponent {
     }
     this.setState({loading: true})
     axios
-      .get('http://localhost:5000/bambora-shop/products/get-prods')
+      .get('http://localhost:5000/bambora-shop/products/get-prods', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
       .then((prods) => {
         this.setState({ products: [...prods.data.products] , hasProds: prods.data.products.length > 0, loading: false});
       })

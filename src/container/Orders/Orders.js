@@ -17,7 +17,11 @@ const Orders = (props) => {
     }
     setLoading(true);
 
-    axios.get(`http://localhost:5000/bambora-shop/users/${localStorage.getItem('userId')}`).then(response => {
+    axios.get(`http://localhost:5000/bambora-shop/users/${localStorage.getItem('userId')}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => {
 
     setOrders({...response.data.orders});
     setLoading(false);

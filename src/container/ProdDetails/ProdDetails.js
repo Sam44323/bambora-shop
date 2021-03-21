@@ -17,7 +17,12 @@ const ProductDetails = (props) => {
     setLoading(true);
     axios
       .get(
-        `http://localhost:5000/bambora-shop/products/get-prod/${props.match.params.id}`
+        `http://localhost:5000/bambora-shop/products/get-prod/${props.match.params.id}`,
+        {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      }
       )
       .then((res) => {
         setProduct(res.data.product);

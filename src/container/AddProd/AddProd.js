@@ -74,7 +74,11 @@ class AddProd extends PureComponent {
       data[item] = this.state[item].value;
     }
     axios
-      .post('http://localhost:5000/bambora-shop/products/add-prod', data)
+      .post('http://localhost:5000/bambora-shop/products/add-prod', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
       .then(() => {
         this.props.history.push('/');
       })

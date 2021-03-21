@@ -19,7 +19,12 @@ const AdminProducts = (props) => {
     setLoading(true);
     axios
       .get(
-        'http://localhost:5000/bambora-shop/products/get-adminProds/creator 1'
+        'http://localhost:5000/bambora-shop/products/get-adminProds/creator 1',
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        }
       )
       .then((prods) => {
 
@@ -38,7 +43,12 @@ const AdminProducts = (props) => {
     (prodId) => {
       axios
         .delete(
-          `http://localhost:5000/bambora-shop/products/delete-prod/${prodId}`
+          `http://localhost:5000/bambora-shop/products/delete-prod/${prodId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          }
         )
         .then(() => {
           setProds(prods.filter((prod) => prod._id !== prodId));

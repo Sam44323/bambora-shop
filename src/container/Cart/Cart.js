@@ -17,7 +17,11 @@ const Cart = (props) => {
       return props.history.replace('/auth/login')
     }
     setLoading(true);
-    axios.get(`http://localhost:5000/bambora-shop/users/cart/${localStorage.getItem('userId')}`).then(response => {
+    axios.get(`http://localhost:5000/bambora-shop/users/cart/${localStorage.getItem('userId')}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => {
       if(response.data){
 
         setCart(response.data.cart);
