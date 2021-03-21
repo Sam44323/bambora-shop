@@ -1,7 +1,16 @@
-import styles from './Logout.module.css';
+import {useEffect} from 'react';
 
-const logout = () => {
-  return <h1>This is the logout page!</h1>;
-};
+import styles from './Logout.module.css'
 
-export default logout;
+const Logout = props => {
+  useEffect(() => {
+    localStorage.clear();
+    props.history.replace('/auth/login')
+  }, [props])
+
+  return <div>
+  <h1>Logging you out!</h1>
+  </div>
+}
+
+export default Logout

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
 import ProdDetails from '../../components/ProductDetails/ProductDetails';
+import tokenChecker from '../../components/utils/tokenChecker';
 import axios from 'axios';
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState({});
   useEffect(() => {
+    if(!tokenChecker){
+      props.history.push('/auth/login')
+    }
     axios
       .get(
         `http://localhost:5000/bambora-shop/products/get-prod/${props.match.params.id}`

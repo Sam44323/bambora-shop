@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import sharedStyles from '../shared/styles.module.css';
+import tokenChecker from '../../components/utils/tokenChecker';
 import ProductItem from '../../components/ProductItem/ProductItem';
 import axios from 'axios';
 
@@ -10,6 +11,9 @@ class Products extends PureComponent {
   };
 
   componentDidMount() {
+    if(!tokenChecker()){
+      return this.props.history.push('/auth/login')
+    }
     axios
       .get('http://localhost:5000/bambora-shop/products/get-prods')
       .then((prods) => {

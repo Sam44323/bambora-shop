@@ -2,11 +2,15 @@ import { useCallback, useEffect, useState } from 'react';
 
 import ProductItem from '../../components/ProductItem/ProductItem';
 import sharedStyles from '../shared/styles.module.css';
+import tokenChecker from '../../components/utils/tokenChecker';
 import axios from 'axios';
 
 const AdminProducts = (props) => {
   const [prods, setProds] = useState([]);
   useEffect(() => {
+    if(!tokenChecker()){
+      return props.history.replace('/auth/login')
+    }
     axios
       .get(
         'http://localhost:5000/bambora-shop/products/get-adminProds/creator 1'

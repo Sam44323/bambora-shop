@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 
 import sharedStyle from '../shared/styles.module.css';
 import Input from '../../components/InputElement/InputElement';
+import tokenChecker from '../../components/utils/tokenChecker';
 import btnStyles from '../../components/Button/Button.module.css';
 import Button from '../../components/Button/Button';
 import axios from 'axios';
@@ -35,6 +36,12 @@ class AddProd extends PureComponent {
       message: 'Please give a description for the product!',
     },
   };
+
+  componentDidMount() {
+    if(!tokenChecker()){
+      return this.props.history.replace('/auth/login')
+    }
+  }
 
   changeValue = (name, value, type) => {
     const eleValue = { ...this.state[name] };
