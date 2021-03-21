@@ -1,6 +1,5 @@
 import {useEffect, Fragment} from 'react';
 
-import styles from './Logout.module.css'
 import Navigation from '../../../components/Navigation/Navigation';
 
 const Logout = props => {

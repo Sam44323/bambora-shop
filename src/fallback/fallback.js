@@ -7,7 +7,7 @@ import sharedStyles from '../container/shared/styles.module.css';
 const Fallback = () => <Fragment>
   <Navigation/>
   <div className={sharedStyles.loadingSection}>
-    <Loader type="Circles" height={80} width={80} color="salmon"/>
+    <Loader type="Circles" height={80} width={80} color="black"/>
   </div>
 </Fragment>
 
