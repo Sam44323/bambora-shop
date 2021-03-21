@@ -50,6 +50,11 @@
   font-size: 2.4rem;
 }
 
+.loadingSection {
+  text-align: center;
+  margin-top: 30px;
+}
+
 /*STYLE FOR THE PRODUCTS TITLE*/
 .FormTitle {
   margin: 0px;
