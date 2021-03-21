@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import Fallback from './fallback/fallback';
 
 //lazy loading for the products component
 
@@ -27,7 +28,7 @@ const NotFound = React.lazy(() => import('./container/NotFound/Page404.js'));
 const App = () => {
   return (
     //wil refactor the fallback late
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Fallback/>}>
         <Switch>
           <Route path='/' exact component={Products} />
           <Route path='/prod-details/:id' component={ProdDetails} />
