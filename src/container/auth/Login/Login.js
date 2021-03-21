@@ -49,11 +49,18 @@ const Login = (props) => {
     }
     axios
       .post('http://localhost:5000/bambora-shop/users/login-user', data)
-      .then(() => {
-        props.history.replace('/');
+      .then((response) => {
+        if(response){
+          const expiresTime= new Date();
+          expiresTime.setHours(expiresTime.getHours() + 1);
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userId', response.data.userId);
+          localStorage.setItem('expiresIn', expiresTime.toISOString());
+          props.history.replace('/');
+        }
       })
       .catch((err) => console.log(err));
-  }, [props, formState]);
+  }, [props,formState]);
 
   return (
     <div className={sharedStyles.FormSection}>
