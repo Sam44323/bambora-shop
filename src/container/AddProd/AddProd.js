@@ -39,6 +39,7 @@ class AddProd extends PureComponent {
 
   componentDidMount() {
     if(!tokenChecker()){
+      
       return this.props.history.replace('/auth/login')
     }
   }
