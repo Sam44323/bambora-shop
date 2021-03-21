@@ -1,49 +1,41 @@
 import React, { PureComponent } from 'react';
 
 import styles from './Navigtion.module.css';
-import NavigationItem from './NavigationItem/NavigationItem';
+import navItemCreator from '../utils/navItemCreator';
 import { DESKTOP_CLASS, MOBILE_CLASS } from '../utils/uiconstants';
 
 class Navigation extends PureComponent {
+  state ={
+    showbackDrop: false
+  }
+
+  changeBackDrop = (value) => this.setState({showbackDrop: value})
+
   render() {
     const hamburgerIcon = (
-      <div className={styles.hamburgerIconSection}>
+      <div className={styles.hamburgerIconSection} onClick={() => this.changeBackDrop(true)}>
         <div className={styles.hamburgerLine}></div>
         <div className={styles.hamburgerLine}></div>
         <div className={styles.hamburgerLine}></div>
       </div>
     );
+
+  const mobileNav = navItemCreator(MOBILE_CLASS);
+  const desktopNav = navItemCreator(DESKTOP_CLASS);
     return (
-      <div className={styles.desktopSection}>
+      <React.Fragment>
+      {this.state.showbackDrop && <div className={styles.backdropStyle} onClick={() => this.changeBackDrop(false)}></div>}
+      <div className={styles.navigationRoot}>
         {hamburgerIcon}
         <h1 className={styles.navigationTitle}>Bambora Shop</h1>
-        <div className={styles.navigationSection}>
-          <NavigationItem path='/' classValue={DESKTOP_CLASS}>
-            Products
-          </NavigationItem>
-          <NavigationItem path='/my-products' classValue={DESKTOP_CLASS}>
-            My Products
-          </NavigationItem>
-          <NavigationItem path='/add-prod' classValue={DESKTOP_CLASS}>
-            Add Product
-          </NavigationItem>
-          <NavigationItem path='/cart' classValue={DESKTOP_CLASS}>
-            Cart
-          </NavigationItem>
-          <NavigationItem path='/orders' classValue={DESKTOP_CLASS}>
-            Orders
-          </NavigationItem>
-          <NavigationItem path='/auth/signup' classValue={DESKTOP_CLASS}>
-            Sign Up
-          </NavigationItem>
-          <NavigationItem path='/auth/login' classValue={DESKTOP_CLASS}>
-            Log In
-          </NavigationItem>
-          <NavigationItem path='/auth/logout' classValue={DESKTOP_CLASS}>
-            Logout
-          </NavigationItem>
+        <div className={styles.desktopNavigationSection}>
+          {desktopNav}
         </div>
+        {this.state.showbackDrop && <div className={styles.mobileNavigationSection} onClick={() => this.changeBackDrop(false)}>
+          {mobileNav}
+        </div>}
       </div>
+      </React.Fragment>
     );
   }
 }

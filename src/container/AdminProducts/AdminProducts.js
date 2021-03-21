@@ -19,7 +19,7 @@ const AdminProducts = (props) => {
         setProds(prods.data.products);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props]);
 
   const deleteProduct = useCallback(
     (prodId) => {

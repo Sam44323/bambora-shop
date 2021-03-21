@@ -1,0 +1,2 @@
+export const PATHS = ['/', '/my-products', '/add-prod', '/cart', '/orders', '/auth/signup', '/auth/login', '/auth/logout'];
+export const NAMES = ['Products', 'My Products', 'Add Products', 'Cart', 'Orders', 'Sign Up', 'Log In', 'Logout'];

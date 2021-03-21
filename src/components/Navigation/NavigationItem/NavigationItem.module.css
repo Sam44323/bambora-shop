@@ -2,8 +2,16 @@
   margin-right: 10px;
   color: brown;
   text-decoration: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   padding: 10px;
+  font-weight: bolder;
+}
+
+.mobile_class {
+  font-size: 1.9rem;
+  color: saddlebrown;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
   font-weight: bolder;
 }
 

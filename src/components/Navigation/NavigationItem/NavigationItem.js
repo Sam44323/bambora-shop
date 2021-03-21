@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styles from './NavigationItem.module.css';
 
-const navItem = (props) => (
-  <NavLink
+const navItem = (props) => {
+  return props.show ? <NavLink
     to={props.path}
     exact
     className={styles[props.classValue]}
@@ -13,7 +13,8 @@ const navItem = (props) => (
     }}
   >
     {props.children}
-  </NavLink>
-);
+  </NavLink>: null
+  
+}
 
 export default navItem;

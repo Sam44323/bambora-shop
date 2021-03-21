@@ -5,7 +5,7 @@ import styles from './Logout.module.css'
 const Logout = props => {
   useEffect(() => {
     localStorage.clear();
-    props.history.replace('/auth/login')
+    props.history.push('/auth/login')
   }, [props])
 
   return <div>
