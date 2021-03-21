@@ -1,6 +1,7 @@
-import { PureComponent } from 'react';
+import { PureComponent, Fragment } from 'react';
 
 import sharedStyle from '../shared/styles.module.css';
+import Navigation from '../../components/Navigation/Navigation';
 import Input from '../../components/InputElement/InputElement';
 import tokenChecker from '../../components/utils/tokenChecker';
 import btnStyles from '../../components/Button/Button.module.css';
@@ -39,7 +40,6 @@ class AddProd extends PureComponent {
 
   componentDidMount() {
     if(!tokenChecker()){
-      
       return this.props.history.replace('/auth/login')
     }
   }
@@ -99,7 +99,8 @@ class AddProd extends PureComponent {
         />
       );
     }
-    return (
+    return <Fragment>
+    <Navigation/>
       <div className={sharedStyle.FormSection}>
         <h1 className={sharedStyle.FormTitle}>Add a product!</h1>
         <div>{inputValue}</div>
@@ -108,7 +109,7 @@ class AddProd extends PureComponent {
           Add
         </Button>
       </div>
-    );
+    </Fragment>
   }
 }
 

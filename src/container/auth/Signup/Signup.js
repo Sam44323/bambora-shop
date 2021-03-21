@@ -1,6 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Fragment } from 'react';
 
 import sharedStyles from '../../shared/styles.module.css';
+import Navigation from '../../../components/Navigation/Navigation';
 import btnStyles from '../../../components/Button/Button.module.css';
 import InputElement from '../../../components/InputElement/InputElement';
 import Button from '../../../components/Button/Button';
@@ -64,7 +65,8 @@ const Signup = (props) => {
     },
     [formState]
   );
-  return (
+  return <Fragment>
+  <Navigation/>
     <div className={sharedStyles.FormSection}>
       <h1 className={sharedStyles.FormTitle}>Create Account!</h1>
       {formState.map((item) => (
@@ -83,7 +85,7 @@ const Signup = (props) => {
         Create
       </Button>
     </div>
-  );
+</Fragment>
 };
 
 export default Signup;

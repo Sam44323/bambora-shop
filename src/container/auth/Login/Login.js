@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, Fragment } from 'react';
 
 import sharedStyles from '../../shared/styles.module.css';
+import Navigation from '../../../components/Navigation/Navigation';
 import btnStyles from '../../../components/Button/Button.module.css';
 import InputElement from '../../../components/InputElement/InputElement';
 import Button from '../../../components/Button/Button';
@@ -62,7 +63,8 @@ const Login = (props) => {
       .catch((err) => console.log(err));
   }, [props,formState]);
 
-  return (
+  return <Fragment>
+  <Navigation/>
     <div className={sharedStyles.FormSection}>
       <h1 className={sharedStyles.FormTitle}>Login</h1>
       {formState.map((item) => (
@@ -81,7 +83,7 @@ const Login = (props) => {
         Login
       </Button>
     </div>
-  );
+ </Fragment>
 };
 
 export default Login;

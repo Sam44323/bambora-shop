@@ -1,6 +1,7 @@
-import {useEffect} from 'react';
+import {useEffect, Fragment} from 'react';
 
 import styles from './Logout.module.css'
+import Navigation from '../../../components/Navigation/Navigation';
 
 const Logout = props => {
   useEffect(() => {
@@ -8,9 +9,10 @@ const Logout = props => {
     props.history.push('/auth/login')
   }, [props])
 
-  return <div>
+  return <Fragment>
+  <Navigation/>
   <h1>Logging you out!</h1>
-  </div>
+  </Fragment>
 }
 
 export default Logout

@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import sharedStyles from '../shared/styles.module.css';
 import tokenChecker from '../../components/utils/tokenChecker';
 import ProductItem from '../../components/ProductItem/ProductItem';
+import Navigation from '../../components/Navigation/Navigation';
 import axios from 'axios';
 
 class Products extends PureComponent {
@@ -36,11 +37,14 @@ class Products extends PureComponent {
         deleteProduct={this.deleteProdAction}
       />
     ));
-    return products.length < 1 ? (
+    return <React.Fragment>
+    <Navigation/>
+    {products.length < 1 ? (
       <h1 className={sharedStyles.noProductsTitle}>No Products to show!</h1>
     ) : (
       <div className={sharedStyles.productsSection}>{products}</div>
-    );
+    )}
+    </React.Fragment>
   }
 }
 

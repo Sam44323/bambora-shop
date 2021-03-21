@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, Fragment} from 'react';
 
 import ProductItem from '../../components/ProductItem/ProductItem';
+import Navigation from '../../components/Navigation/Navigation';
 import sharedStyles from '../shared/styles.module.css';
 import tokenChecker from '../../components/utils/tokenChecker';
 import axios from 'axios';
@@ -35,7 +36,8 @@ const AdminProducts = (props) => {
     [prods]
   );
 
-  return (
+  return <Fragment>
+  <Navigation/>
     <div className={sharedStyles.productsSection}>
       {prods.length === 0 ? (
         <h1 className={sharedStyles.noProductsTitle}>You have no products!</h1>
@@ -53,7 +55,7 @@ const AdminProducts = (props) => {
         ))
       )}
     </div>
-  );
+</Fragment>
 };
 
 export default AdminProducts;
