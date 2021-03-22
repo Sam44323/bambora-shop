@@ -100,19 +100,19 @@ const Cart = (props) => {
   );
 
   const checkoutAction = useCallback(() => {
-    axios
-      .post("http://localhost:5000/bambora-shop/users/checkout", null, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        if (response) {
-          props.history.push("/orders");
-        }
-      })
-      .catch((err) => setError(errorMessageChecker(err)));
-  }, [props]);
+    // axios
+    //   .post("http://localhost:5000/bambora-shop/users/checkout", null, {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     if (response) {
+    //       props.history.push("/orders");
+    //     }
+    //   })
+    //   .catch((err) => setError(errorMessageChecker(err)));
+  }, []);
 
   //will change the item show later
   return (
