@@ -60,6 +60,38 @@ const Cart = (props) => {
     [cart]
   );
 
+  const incDcrCart = useCallback(
+    (value, prodId) => {
+      axios
+        .post(
+          `http://localhost:5000/bambora-shop/users/incr-dcr/${prodId}?type=${value}`,
+          null,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          let cartItems = [...cart];
+          cartItems = cartItems.map((item) => {
+            if (value === "inc") {
+              item.qty += 1;
+            } else {
+              item.qty -= 1;
+            }
+            return item;
+          });
+          cartItems = cartItems.filter((item) => item.qty !== 0);
+          setCart(cartItems);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [cart]
+  );
+
   //will change the item show later
   return (
     <Fragment>
@@ -79,6 +111,18 @@ const Cart = (props) => {
             <div className={styles.cardView} key={item._id}>
               <h1 className={styles.cartItemName}>{item.prodId.name}</h1>
               <p className={styles.cartItemQty}>{item.qty}</p>
+              <Button
+                class={`${btnStyle.SuccessBtn}`}
+                clickAction={() => incDcrCart("inc", item._id)}
+              >
+                +
+              </Button>
+              <Button
+                class={`${btnStyle.SuccessBtn}`}
+                clickAction={() => incDcrCart("dcr", item._id)}
+              >
+                -
+              </Button>
               <Button
                 class={`${btnStyle.SuccessBtn}`}
                 clickAction={() => removeItem(item._id)}
