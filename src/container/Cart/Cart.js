@@ -12,10 +12,9 @@ import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import errorMessageChecker from "../../components/utils/errorMessageChecker";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
+import { STRIPE_KEY } from "../../constants";
 
-const stripePromise = loadStripe(
-  "pk_test_51IXt1SSGnPbEznxszZoi8r2XKhBgkDCDlUVm1DF8wDDkVATDo9GRin076DbylgYoogEZ79LqkslJ4s8I5IH1b3q200HudMhDpn"
-);
+const stripePromise = loadStripe(STRIPE_KEY);
 
 const Cart = (props) => {
   const [cart, setCart] = useState([]);
