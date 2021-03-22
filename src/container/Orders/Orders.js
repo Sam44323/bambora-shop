@@ -29,7 +29,7 @@ const Orders = (props) => {
       })
       .then((response) => {
         if (response.data.orders.length > 0) {
-          setOrders({ ...response.data.orders });
+          setOrders([...response.data.orders]);
         }
         setLoading(false);
       })
@@ -55,7 +55,13 @@ const Orders = (props) => {
       {orders.length === 0 && !loading ? (
         <h1 className={sharedStyles.emptyValueTitleStyle}>No Orders Yet!</h1>
       ) : (
-        orders.map((item) => item)
+        orders.map((item) => (
+          <div key={item._id}>
+            <h1>{item.name}</h1>
+            <h3>{item.qty}</h3>
+            <p>{item.amount}</p>
+          </div>
+        ))
       )}
     </Fragment>
   );
