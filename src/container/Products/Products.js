@@ -39,7 +39,6 @@ class Products extends PureComponent {
   }
 
   cartAction = (prodId) => {
-    console.log(prodId);
     axios
       .post(
         `http://localhost:5000/bambora-shop/users/cart-action/${prodId}`,
