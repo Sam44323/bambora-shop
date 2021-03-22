@@ -6,6 +6,7 @@ import axios from "axios";
 
 const SuccessPayment = (props) => {
   useEffect(() => {
+    //sending the orders
     axios
       .post("http://localhost:5000/bambora-shop/users/checkout", null, {
         headers: {
