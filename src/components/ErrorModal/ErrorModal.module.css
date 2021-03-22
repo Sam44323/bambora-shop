@@ -1,0 +1,21 @@
+.errorSection {
+  background-color: white;
+  width: 80%;
+  margin: 0px auto;
+  padding: 40px;
+  margin-top: 100px;
+  border-radius: 30px;
+  box-shadow: 1px 4px 5px 4px rgb(0, 0, 0, 0.5);
+}
+
+.errorMessage {
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 10px;
+  font-size: 1.9rem;
+}
+
+@media (min-width: 1037px) {
+  .errorSection {
+    width: 40%;
+  }
+}

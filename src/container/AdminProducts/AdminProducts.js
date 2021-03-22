@@ -5,12 +5,16 @@ import Loader from "react-loader-spinner";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import Navigation from "../../components/Navigation/Navigation";
 import tokenChecker from "../../components/utils/tokenChecker";
+import errorMessageChecker from "../../components/utils/errorMessageChecker";
+import Modal from "../../components/Modal/Modal";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import axios from "axios";
 
 const AdminProducts = (props) => {
   const [prods, setProds] = useState([]);
   const [hasProds, setHasProds] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [err, setError] = useState("");
 
   useEffect(() => {
     if (!tokenChecker()) {
@@ -29,8 +33,8 @@ const AdminProducts = (props) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
+        setError(errorMessageChecker(err));
       });
   }, [props]);
 
@@ -48,7 +52,10 @@ const AdminProducts = (props) => {
         .then(() => {
           setProds(prods.filter((prod) => prod._id !== prodId));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false);
+          setError(errorMessageChecker(err));
+        });
     },
     [prods]
   );
@@ -56,6 +63,11 @@ const AdminProducts = (props) => {
   return (
     <Fragment>
       <Navigation />
+      {err && (
+        <Modal>
+          <ErrorModal message={err} buttonAction={() => setError("")} />
+        </Modal>
+      )}
       {loading && (
         <div className={sharedStyles.loadingSection}>
           <Loader type="Circles" height={80} width={80} color="black" />

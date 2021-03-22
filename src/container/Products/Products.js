@@ -5,6 +5,9 @@ import tokenChecker from "../../components/utils/tokenChecker";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import Navigation from "../../components/Navigation/Navigation";
 import Loader from "react-loader-spinner";
+import Modal from "../../components/Modal/Modal";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
+import errorMessageChecker from "../../components/utils/errorMessageChecker";
 import axios from "axios";
 
 class Products extends PureComponent {
@@ -12,6 +15,7 @@ class Products extends PureComponent {
     products: [],
     hasProds: true,
     loading: false,
+    error: "",
   };
 
   componentDidMount() {
@@ -26,15 +30,16 @@ class Products extends PureComponent {
         },
       })
       .then((prods) => {
-        this.setState({
-          products: [...prods.data.products],
-          hasProds: prods.data.products.length > 0,
-          loading: false,
-        });
+        if (prods) {
+          this.setState({
+            products: [...prods.data.products],
+            hasProds: prods.data.products.length > 0,
+            loading: false,
+          });
+        }
       })
       .catch((err) => {
-        console.log(err);
-        this.setState({ loading: false });
+        this.setState({ loading: false, error: errorMessageChecker(err) });
       });
   }
 
@@ -53,7 +58,7 @@ class Products extends PureComponent {
         this.props.history.push("/cart");
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({ loading: false, error: errorMessageChecker(err) });
       });
   };
 
@@ -75,6 +80,14 @@ class Products extends PureComponent {
     return (
       <React.Fragment>
         <Navigation />
+        {this.state.error && (
+          <Modal>
+            <ErrorModal
+              message={this.state.error}
+              buttonAction={() => this.setState({ error: "" })}
+            />
+          </Modal>
+        )}
         {this.state.loading && (
           <div className={sharedStyles.loadingSection}>
             <Loader type="Circles" height={80} width={80} color="black" />

@@ -7,12 +7,16 @@ import Loader from "react-loader-spinner";
 import sharedStyles from "../shared/styles.module.css";
 import tokenChecker from "../../components/utils/tokenChecker";
 import Button from "../../components/Button/Button";
+import Modal from "../../components/Modal/Modal";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
+import errorMessageChecker from "../../components/utils/errorMessageChecker";
 import axios from "axios";
 
 const Cart = (props) => {
   const [cart, setCart] = useState([]);
   const [hasItems, setHasItems] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [err, setError] = useState("");
 
   useEffect(() => {
     if (!tokenChecker()) {
@@ -26,15 +30,15 @@ const Cart = (props) => {
         },
       })
       .then((response) => {
-        if (response.data) {
+        setLoading(false);
+        if (response.data.cart) {
           setCart(response.data.cart);
           setHasItems(response.data.cart.length > 0);
-          setLoading(false);
         }
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
+        setError(errorMessageChecker(err));
       });
   }, [props]);
 
@@ -54,8 +58,11 @@ const Cart = (props) => {
           let cartItems = [...cart];
           cartItems = cartItems.filter((item) => item._id !== prodId);
           setCart(cartItems);
+          setHasItems(cartItems.length > 0);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setError(errorMessageChecker(err));
+        });
     },
     [cart]
   );
@@ -86,7 +93,7 @@ const Cart = (props) => {
           setCart(cartItems);
         })
         .catch((err) => {
-          console.log(err);
+          setError(errorMessageChecker(err));
         });
     },
     [cart]
@@ -96,6 +103,11 @@ const Cart = (props) => {
   return (
     <Fragment>
       <Navigation />
+      {err && (
+        <Modal>
+          <ErrorModal message={err} buttonAction={() => setError("")} />
+        </Modal>
+      )}
       {loading && (
         <div className={sharedStyles.loadingSection}>
           <Loader type="Circles" height={80} width={80} color="black" />

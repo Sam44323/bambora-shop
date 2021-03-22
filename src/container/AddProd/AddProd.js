@@ -1,46 +1,47 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent, Fragment } from "react";
 
-import sharedStyle from '../shared/styles.module.css';
-import Navigation from '../../components/Navigation/Navigation';
-import Input from '../../components/InputElement/InputElement';
-import tokenChecker from '../../components/utils/tokenChecker';
-import btnStyles from '../../components/Button/Button.module.css';
-import Button from '../../components/Button/Button';
-import axios from 'axios';
+import sharedStyle from "../shared/styles.module.css";
+import Navigation from "../../components/Navigation/Navigation";
+import Input from "../../components/InputElement/InputElement";
+import tokenChecker from "../../components/utils/tokenChecker";
+import btnStyles from "../../components/Button/Button.module.css";
+import Button from "../../components/Button/Button";
+import errorHandlerHOC from "../../HOC/formErrorHandler";
+import axios from "axios";
 
 class AddProd extends PureComponent {
   state = {
     name: {
       isValid: false,
       touched: false,
-      value: '',
-      message: 'Please give a name for the product!',
+      value: "",
+      message: "Please give a name for the product!",
     },
     image: {
       isValid: false,
       touched: false,
-      value: '',
-      message: 'Please give an image for the product!',
+      value: "",
+      message: "Please give an image for the product!",
     },
     amount: {
-      type: 'number',
+      type: "number",
       isValid: false,
       touched: false,
-      value: '',
-      message: 'Please give an amount for the product!',
+      value: "",
+      message: "Please give an amount for the product!",
     },
     desc: {
-      type: 'textarea',
+      type: "textarea",
       isValid: false,
       touched: false,
-      value: '',
-      message: 'Please give a description for the product!',
+      value: "",
+      message: "Please give a description for the product!",
     },
   };
 
   componentDidMount() {
-    if(!tokenChecker()){
-      return this.props.history.replace('/auth/login')
+    if (!tokenChecker()) {
+      return this.props.history.replace("/auth/login");
     }
   }
 
@@ -49,14 +50,14 @@ class AddProd extends PureComponent {
     eleValue.value = value;
     eleValue.touched = true;
     eleValue.isValid =
-      (type === 'number' && value < 0) || value === '' ? false : true;
+      (type === "number" && value < 0) || value === "" ? false : true;
     this.setState({ [name]: eleValue });
   };
 
   resetForm = () => {
     const updatedValue = { ...this.state };
     for (let item in updatedValue) {
-      updatedValue[item].value = '';
+      updatedValue[item].value = "";
       updatedValue[item].isValid = false;
       updatedValue[item].touched = false;
     }
@@ -74,13 +75,15 @@ class AddProd extends PureComponent {
       data[item] = this.state[item].value;
     }
     axios
-      .post('http://localhost:5000/bambora-shop/products/add-prod', data, {
+      .post("http://localhost:5000/bambora-shop/products/add-prod", data, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
-      .then(() => {
-        this.props.history.push('/');
+      .then((res) => {
+        if (res) {
+          this.props.history.push("/");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -98,23 +101,25 @@ class AddProd extends PureComponent {
           isValid={this.state[item].isValid}
           touched={this.state[item].touched}
           invalidMessage={this.state[item].message}
-          type={this.state[item].type ? this.state[item].type : 'text'}
+          type={this.state[item].type ? this.state[item].type : "text"}
           changeAction={this.changeValue}
         />
       );
     }
-    return <Fragment>
-    <Navigation/>
-      <div className={sharedStyle.FormSection}>
-        <h1 className={sharedStyle.FormTitle}>Add a product!</h1>
-        <div>{inputValue}</div>
-        <br />
-        <Button class={btnStyles.SuccessBtn} clickAction={this.submitForm}>
-          Add
-        </Button>
-      </div>
-    </Fragment>
+    return (
+      <Fragment>
+        <Navigation />
+        <div className={sharedStyle.FormSection}>
+          <h1 className={sharedStyle.FormTitle}>Add a product!</h1>
+          <div>{inputValue}</div>
+          <br />
+          <Button class={btnStyles.SuccessBtn} clickAction={this.submitForm}>
+            Add
+          </Button>
+        </div>
+      </Fragment>
+    );
   }
 }
 
-export default AddProd;
+export default errorHandlerHOC(AddProd);

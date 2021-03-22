@@ -1,0 +1,9 @@
+.modalStyle {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  text-align: center;
+}

@@ -5,6 +5,7 @@ import Navigation from "../../../components/Navigation/Navigation";
 import btnStyles from "../../../components/Button/Button.module.css";
 import InputElement from "../../../components/InputElement/InputElement";
 import Button from "../../../components/Button/Button";
+import errorHandlerHOC from "../../../HOC/formErrorHandler";
 import axios from "axios";
 
 //util functions
@@ -88,4 +89,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default errorHandlerHOC(Login);
