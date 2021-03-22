@@ -21,7 +21,14 @@ const Orders = React.lazy(() => import("./container/Orders/Orders.js"));
 const Logout = React.lazy(() => import("./container/auth/Logout/Logout.js"));
 const Login = React.lazy(() => import("./container/auth/Login/Login.js"));
 const Signup = React.lazy(() => import("./container/auth/Signup/Signup.js"));
-const Checkout = React.lazy(() => import("./container/Checkout/Checkout.js"));
+
+//RELATED TO THE PAYMENT OUTPUT USING THE STRIPE
+const SuccessPage = React.lazy(() =>
+  import("./container/SuccessPayment/SuccessPayment.js")
+);
+const FailPayment = React.lazy(() =>
+  import("./container/FailPayment/FailPayment")
+);
 
 //NOT FOUND PAGE
 const NotFound = React.lazy(() => import("./container/NotFound/Page404.js"));
@@ -36,7 +43,8 @@ const App = () => {
         <Route path="/add-prod" component={AddProd} />
         <Route path="/my-products" component={AdminProducts} />
         <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path="/success" component={SuccessPage} />
+        <Route path="/failPayment" component={FailPayment} />
         <Route path="/orders" component={Orders} />
         <Route path="/auth/signup" component={Signup} />
         <Route path="/auth/login" component={Login} />

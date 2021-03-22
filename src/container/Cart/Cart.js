@@ -11,6 +11,11 @@ import Modal from "../../components/Modal/Modal";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import errorMessageChecker from "../../components/utils/errorMessageChecker";
 import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51IXt1SSGnPbEznxszZoi8r2XKhBgkDCDlUVm1DF8wDDkVATDo9GRin076DbylgYoogEZ79LqkslJ4s8I5IH1b3q200HudMhDpn"
+);
 
 const Cart = (props) => {
   const [cart, setCart] = useState([]);
@@ -99,19 +104,26 @@ const Cart = (props) => {
     [cart]
   );
 
-  const checkoutAction = useCallback(() => {
-    // axios
-    //   .post("http://localhost:5000/bambora-shop/users/checkout", null, {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     if (response) {
-    //       props.history.push("/orders");
-    //     }
-    //   })
-    //   .catch((err) => setError(errorMessageChecker(err)));
+  const checkoutAction = useCallback(async () => {
+    const stripe = await stripePromise; // creating a stripe instance
+
+    let session = await axios.get(
+      "http://localhost:5000/bambora-shop/users/stripeSession",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    session = session.data.session;
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
+    }
   }, []);
 
   //will change the item show later

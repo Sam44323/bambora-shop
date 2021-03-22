@@ -1,0 +1,20 @@
+.paymentFailSection {
+  width: 70%;
+  margin: 10px auto;
+  font-family: "Raleway";
+  padding: 30px;
+  background-color: salmon;
+  color: black;
+  font-size: 1.1rem;
+  border-radius: 30px;
+}
+
+.paymentFailTitle {
+  text-align: center;
+}
+
+@media (min-width: 1037px) {
+  .paymentFailSection {
+    width: 40%;
+  }
+}
