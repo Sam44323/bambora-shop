@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
 
+import styles from "./Orders.module.css";
 import sharedStyles from "../shared/styles.module.css";
 import Loader from "react-loader-spinner";
 import Navigation from "../../components/Navigation/Navigation";
@@ -56,10 +57,10 @@ const Orders = (props) => {
         <h1 className={sharedStyles.emptyValueTitleStyle}>No Orders Yet!</h1>
       ) : (
         orders.map((item) => (
-          <div key={item._id}>
-            <h1>{item.name}</h1>
-            <h3>{item.qty}</h3>
-            <p>{item.amount}</p>
+          <div key={item._id} className={styles.orderSection}>
+            <h1 className={styles.ordernItemName}>{item.name}</h1>
+            <h3 className={styles.orderItemQty}>{item.qty}</h3>
+            <p className={styles.orderItemAmount}>$ {item.amount}</p>
           </div>
         ))
       )}

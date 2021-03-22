@@ -1,0 +1,30 @@
+.orderSection {
+  background-color: black;
+  text-align: center;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/*SHARES STYLES*/
+
+.ordernItemName,
+.orderItemQty,
+.orderItemAmount {
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+
+.orderItemQty,
+.orderItemAmount {
+  font-size: 1.7rem;
+}
+
+@media (min-width: 1037px) {
+  .orderSection {
+    width: 40%;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
