@@ -99,6 +99,21 @@ const Cart = (props) => {
     [cart]
   );
 
+  const checkoutAction = useCallback(() => {
+    axios
+      .post("http://localhost:5000/bambora-shop/users/checkout", null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        if (response) {
+          props.history.push("/orders");
+        }
+      })
+      .catch((err) => setError(errorMessageChecker(err)));
+  }, [props]);
+
   //will change the item show later
   return (
     <Fragment>
@@ -107,6 +122,13 @@ const Cart = (props) => {
         <Modal>
           <ErrorModal message={err} buttonAction={() => setError("")} />
         </Modal>
+      )}
+      {hasItems && !loading && (
+        <div className={styles.checkoutBtnSection}>
+          <Button class={`${btnStyle.SuccessBtn}`} clickAction={checkoutAction}>
+            Checkout
+          </Button>
+        </div>
       )}
       {loading && (
         <div className={sharedStyles.loadingSection}>

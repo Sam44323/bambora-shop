@@ -25,6 +25,10 @@
   margin: 10px auto;
 }
 
+.checkoutBtnSection {
+  text-align: center;
+}
+
 @media (min-width: 1037px) {
   .cardView {
     width: 40%;
