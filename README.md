@@ -25,7 +25,7 @@
 
 ---
 
-# Devlopers
+# Developers
 
 Any new contributions to improve this app will be welcomed!
 
