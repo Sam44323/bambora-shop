@@ -18,10 +18,10 @@
 
 # Tech Stacks used!
 
-- ## React
-- ## axios
-- ## stripe
-- ## react-loader-spinner
+- **React**
+- **axios**
+- **stripe**
+- **react-loader-spinner**
 
 ---
 
